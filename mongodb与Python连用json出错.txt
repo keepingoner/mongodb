@@ -1,0 +1,25 @@
+# 连接
+client = MongoClient('localhost',27017)
+
+# 选择数据库
+db = client.keeponer
+# 选择集合
+collection = db.choose_method
+
+
+# mongodb 会自动生成一个_id 字段 
+# json 序列化的时候会报错
+
+#方法1 查询的时候去除_id字段
+body = []
+for item in collection.find({},{'_id':0}):
+         body.append(item)
+
+
+#方法2 对查询之后的结果集 使用json_util.dumps 方法
+
+from bson import json_util
+import json
+
+resp = collection.find()
+resp = json.loads(json_util.dumps(resp))
