@@ -1,0 +1,21 @@
+_id是mongodb自动生成的id，其类型为ObjectId，所以如果需要在python中通过_id查询，就需要转换类型
+
+
+
+
+
+如果pymongo的版本号小于2.2，使用下面的语句导入ObjectId
+
+from pymongo.objectid import ObjectId
+
+
+如果pymongo的版本号大于2.2，则使用下面的语句
+
+
+from bson.objectid import ObjectId
+
+
+查询代码如下：
+
+
+collection.find_one({'_id':ObjectId('50f0d76347f4ec148890ef1e')})
